@@ -15,7 +15,7 @@ public class Borne extends Carte {
 	
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Carte " + km + " bornes";
 	}
 
 }

@@ -4,23 +4,18 @@ public class Attaque extends Bataille {
 
 	public Attaque(int n, Type t) {
 		super(n, t);
-		// TODO Auto-generated constructor stub
 	}
 
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
-			System.out.println("Carte Feu rouge");
-			break;
+			return "Carte Feu rouge";
 		case ESSENCE:
-			System.out.println("Carte Panne d'essence");
-			break;
+			return "Carte Panne d'essence";
 		case ACCIDENT:
-			System.out.println("Carte Accident");
-			break;
+			return "Carte Accident";
 		case CREVAISON:
-			System.out.println("Carte Crevaison");
-			break;
+			return "Carte Crevaison";
 		default:
 			break;
 		

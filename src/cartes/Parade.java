@@ -10,17 +10,13 @@ public class Parade extends Bataille {
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
-			System.out.println("Carte Feu vert");
-			break;
+			return "Feu vert";
 		case ESSENCE:
-			System.out.println("Carte Essence");
-			break;
+			return "Essence";
 		case ACCIDENT:
-			System.out.println("Carte Reparation");
-			break;
+			return "Reparation";
 		case CREVAISON:
-			System.out.println("Carte Roue de secours");
-			break;
+			return "Roue de secours";
 		default:
 			break;
 		

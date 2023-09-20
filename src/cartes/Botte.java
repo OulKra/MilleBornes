@@ -10,17 +10,13 @@ public class Botte extends Probleme {
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
-			System.out.println("Carte Vehicule prio");
-			break;
+			return "Vehicule prio";
 		case ESSENCE:
-			System.out.println("Carte Citerne d'essence");
-			break;
+			return "Citerne d'essence";
 		case ACCIDENT:
-			System.out.println("Carte As du volant");
-			break;
+			return "As du volant";
 		case CREVAISON:
-			System.out.println("Carte Increvable");
-			break;
+			return "Increvable";
 		default:
 			break;
 		
