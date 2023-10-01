@@ -15,4 +15,6 @@ public abstract class Carte {
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
+	
+	public abstract String toString();
 }

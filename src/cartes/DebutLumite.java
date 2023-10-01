@@ -10,7 +10,7 @@ public class DebutLumite extends Limite {
 	public String toString() {
 		
 		
-		return super.toString();
+		return null;
 			
 	}
 }

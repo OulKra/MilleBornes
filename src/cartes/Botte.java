@@ -7,6 +7,7 @@ public class Botte extends Probleme {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
@@ -22,7 +23,7 @@ public class Botte extends Probleme {
 		
 		}
 		
-		return super.toString();
+		return null;
 			
 	}
 

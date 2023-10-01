@@ -6,22 +6,23 @@ public class Attaque extends Bataille {
 		super(n, t);
 	}
 
+	@Override
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
-			return "Carte Feu rouge";
+			return "Feu rouge";
 		case ESSENCE:
-			return "Carte Panne d'essence";
+			return "Panne d'essence";
 		case ACCIDENT:
-			return "Carte Accident";
+			return "Accident";
 		case CREVAISON:
-			return "Carte Crevaison";
+			return "Crevaison";
 		default:
 			break;
 		
 		}
 		
-		return super.toString();
+		return null;
 			
 	}
 	

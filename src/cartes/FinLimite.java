@@ -10,7 +10,7 @@ public class FinLimite extends Limite {
 	
 	public String toString() {
 		
-		return super.toString();
+		return null;
 			
 	}
 }

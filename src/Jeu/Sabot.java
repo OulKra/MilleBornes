@@ -1,24 +1,24 @@
 package Jeu;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import cartes.Carte;
 
-public class Sabot implements Iterator<Carte>{
+public class Sabot implements Iterable<Carte>{
 	
 	Carte[] cartes;
 	int nombre_carte;
 	int indiceIterateur = 0;
 	boolean nextEffectue = false;
+	
 	public Sabot(int capacite) {
-		this.nombre_carte = capacite;
+		nombre_carte = 0;
 		cartes = new Carte[capacite];
 	}
 	
 	public Boolean estVide()
 	{
-		return cartes.length == 0;
+		return this.nombre_carte == 0;
 	}
 	
 	private void ajouterCarte(Carte c) throws ArrayIndexOutOfBoundsException{
@@ -26,7 +26,7 @@ public class Sabot implements Iterator<Carte>{
 			cartes[nombre_carte] = c;
 			nombre_carte++;
 		}catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Capacité du tableau dépassée");
+			throw new ArrayIndexOutOfBoundsException("[ajouterCarte] CapacitÃ© du tableau dÃ©passÃ©");
 		}
 	}
 	
@@ -37,52 +37,67 @@ public class Sabot implements Iterator<Carte>{
 			}
 			
 		}catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Capacité du tableau dépassée");
+			throw new ArrayIndexOutOfBoundsException("[ajouterFamilleCarte(Carte c)] CapacitÃ© du tableau dÃ©passÃ©");
 		}
 	}
 	
 	public void ajouterFamilleCarte(Carte... c) throws ArrayIndexOutOfBoundsException{
 		try {
 			for (Carte carte : c) {
-				for (int i = 0; i < carte.getNombre(); i++) {
-					ajouterCarte(carte);
-				}
+				ajouterFamilleCarte(carte);				
 			}
 		}catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Capacité du tableau dépassée");
+			throw new ArrayIndexOutOfBoundsException("[ajouterFamilleCarte(Carte... c)] CapacitÃ© du tableau dÃ©passÃ©");
 		}
 	}
-
-	@Override
-	public boolean hasNext() {
-		return indiceIterateur < nombre_carte;
-	}
-
-	@Override
-	public Carte next() {
-		if(hasNext()) {
-			Carte carte = cartes[indiceIterateur];
-			indiceIterateur++;
-			nextEffectue = true;
-			return carte;
-		} else {
-			throw new NoSuchElementException();
-		}
+	
+	public Carte piocher() {
 		
-	}
-
-	@Override
-	public void remove() {
-		if(nombre_carte < 1 || !nextEffectue) {
-			throw new IllegalStateException();
-		}
+		Iterator<Carte> iterator = iterator();
+		Carte carte = iterator.next();
 		
-		for (int i = indiceIterateur -1; i < nombre_carte-1; i++) {
-			cartes[i] = cartes[i+1];
-		}
-		nextEffectue = false;
-		indiceIterateur--;
-		nombre_carte--;
+		iterator.remove();
+		
+		return carte;
 	}
+	
+	@Override
+    public Iterator<Carte> iterator() {
+        return new SabotIterator();
+    }
+	
+	private class SabotIterator implements Iterator<Carte> {
+        
+        @Override
+    	public boolean hasNext() {
+    		return indiceIterateur < nombre_carte;
+    	}
 
+    	@Override
+    	public Carte next() {
+    		if(hasNext()) {
+    			Carte carte = cartes[indiceIterateur];
+    			indiceIterateur++;
+    			nextEffectue = true;
+    			return carte;
+    		} else {
+    			throw new NoSuchElementException();
+    		}
+    		
+    	}
+
+    	@Override
+    	public void remove() {
+    		if(nombre_carte < 1 || !nextEffectue) {
+    			throw new IllegalStateException();
+    		}
+    		
+    		for (int i = indiceIterateur -1; i < nombre_carte-1; i++) {
+    			cartes[i] = cartes[i+1];
+    		}
+    		nextEffectue = false;
+    		indiceIterateur--;
+    		nombre_carte--;
+    	}
+	}
 }

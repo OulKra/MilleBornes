@@ -7,6 +7,7 @@ public class Parade extends Bataille {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public String toString() {
 		switch(super.getType()){
 		case FEU:
@@ -21,8 +22,6 @@ public class Parade extends Bataille {
 			break;
 		
 		}
-		
-		return super.toString();
-			
+		return null;			
 	}
 }
