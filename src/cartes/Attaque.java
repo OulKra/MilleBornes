@@ -8,7 +8,7 @@ public class Attaque extends Bataille {
 
 	@Override
 	public String toString() {
-		switch(super.getType()){
+		switch (super.getType()) {
 		case FEU:
 			return "Feu rouge";
 		case ESSENCE:
@@ -19,11 +19,19 @@ public class Attaque extends Bataille {
 			return "Crevaison";
 		default:
 			break;
-		
+
 		}
-		
+
 		return null;
-			
+
 	}
-	
+
+	public boolean equals(Object obj) {
+		if (obj instanceof Attaque attaque) {
+			return attaque.getType() == this.getType();
+		}
+
+		return false;
+	}
+
 }

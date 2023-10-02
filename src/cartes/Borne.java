@@ -1,7 +1,7 @@
 package cartes;
 
 public class Borne extends Carte {
-	
+
 	private int km;
 
 	public Borne(int nombre, int km) {
@@ -12,10 +12,18 @@ public class Borne extends Carte {
 	public int getKm() {
 		return km;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Carte " + km + " bornes";
+	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof Borne borne) {
+			return borne.getKm() == this.getKm();
+		}
+
+		return false;
 	}
 
 }

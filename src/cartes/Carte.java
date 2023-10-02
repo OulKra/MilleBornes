@@ -2,8 +2,8 @@ package cartes;
 
 public abstract class Carte {
 
-	private int nombre;	
-	
+	private int nombre;
+
 	public Carte(int nombre) {
 		this.nombre = nombre;
 	}
@@ -11,10 +11,10 @@ public abstract class Carte {
 	public int getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public abstract String toString();
 }

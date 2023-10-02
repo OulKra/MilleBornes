@@ -1,10 +1,10 @@
 package cartes;
 
-public class FinLimite extends Limite {
+public class DebutLimite extends Limite {
 
 	int lim;
 
-	public FinLimite(int n) {
+	public DebutLimite(int n) {
 		super(n);
 		lim = n;
 		// TODO Auto-generated constructor stub
@@ -12,11 +12,11 @@ public class FinLimite extends Limite {
 
 	public String toString() {
 
-		return "Fin limite : " + lim + "km/h";
+		return "Début limite : " + lim + "km/h";
 
 	}
 
 	public boolean equals(Object obj) {
-		return obj instanceof FinLimite;
+		return obj instanceof DebutLimite;
 	}
 }
