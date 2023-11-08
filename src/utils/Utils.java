@@ -9,20 +9,20 @@ public class Utils {
 		Random r = new Random();
 		int index = r.nextInt(liste.size());
 		
-		E elem = (E) liste.get(index);
+		E elem = liste.get(index);
 		liste.remove(index);
 		return elem;		
 	}
 
 	public static <E> E extraireIterator(List<E> liste) {
 		
-		Iterator<?> iter = liste.iterator();
+		Iterator<E> iter = liste.iterator();
 		Random r = new Random();
 		int index = r.nextInt(liste.size());
 		E elem = null;
 		
 		for (int i = 0; i < index; i++) {
-			elem = (E) iter.next();
+			elem = iter.next();
 		}
 		
 		iter.remove();
@@ -33,8 +33,9 @@ public class Utils {
 	public static <E> List<E> melanger(List<E> liste) {
 		
 		List<E> newListe = liste;
-		while(newListe.size() > 0) {
-			extraire(newListe);
+		for (int i = 0; i < newListe.size(); i++) { 
+			E carte = extraire(newListe);
+			newListe.add(i, carte);			
 		}
 		
 		return newListe;
@@ -59,41 +60,56 @@ public class Utils {
 	
 	public static <E> List<E> rassembler(List<E> liste) {
 		
-		List<E> newListe = new ArrayList<>();
-		for (int i = 0; i < liste.size(); i++) {
-			E elem = liste.get(i);
-			newListe.add(elem);
-			for (int j = i; j < liste.size(); j++) {
-				if(liste.get(j).equals(elem) && j != i) {
-					newListe.add(liste.get(j));
+		List<E> newListe = liste;
+		for (int i = 0; i < newListe.size(); i++) {
+			E elem = newListe.get(i);
+			int c = 0;
+			for (int j = i; j < newListe.size(); j++) {
+				if(newListe.get(j).equals(elem) && j != i) {
+					E carte = newListe.get(j);
+					newListe.remove(j);
+					newListe.add(i + c, carte);
+					c++;
 				}
 			}
 		}
-		
 		return newListe;
 	}
 	
 	public static <E> boolean verifierRassemblement(List<E> liste) {
 
         ListIterator<E> iterator1 = liste.listIterator();
-        ListIterator<E> iterator2 = liste.listIterator(liste.size());
-        
+        //ListIterator<E> iterator2 = liste.listIterator(liste.size());
+    	ListIterator<E> iterator2 = liste.listIterator();
+
+        int index1 = 0;
+        int index2 = 0;
         E dernierElemIdentique = null; 
 
         while (iterator1.hasNext()) {
             E elem1 = iterator1.next();
-
+            E elem2 = iterator2.next();
+            
             if (dernierElemIdentique == null) {
                 dernierElemIdentique = elem1;
+                index1 = iterator1.nextIndex() ;
             } else if (!elem1.equals(dernierElemIdentique)) {
-                while (iterator2.hasPrevious()) {
-                    E elem2 = iterator2.previous();
-                    if (elem2.equals(dernierElemIdentique)) {
-                        dernierElemIdentique = elem2;
-                        break;
-                    } else {
-                        return false; 
+                while (iterator2.hasNext() /*.hasPrevious()*/) {
+                    /*E elem2 = iterator2.previous();
+
+                    if (elem2.equals(dernierElemIdentique) && index1 != index2) {
+                        return false;
                     }
+                    else {
+                    	break;
+                    }*/
+                	
+                	if (elem2.equals(dernierElemIdentique)) {
+                        return false;
+                    }
+                	 else {
+                     	break;
+                     }
                 }
             }
         }

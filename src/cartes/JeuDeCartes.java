@@ -2,6 +2,7 @@ package cartes;
 
 import java.util.*;
 import cartes.Probleme.Type;
+import utils.Utils;
 
 public class JeuDeCartes {
 
@@ -64,5 +65,7 @@ public class JeuDeCartes {
 				}
 			}
 		}
+		
+		Utils.melanger(listCarte);
 	}
 }
