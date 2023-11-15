@@ -7,7 +7,7 @@ public class FinLimite extends Limite {
 	public FinLimite(int n) {
 		super(n);
 		lim = n;
-		// TODO Auto-generated constructor stub
+		super.finLimite = true;
 	}
 
 	public String toString() {
@@ -15,8 +15,13 @@ public class FinLimite extends Limite {
 		return "Fin limite : " + lim + "km/h";
 
 	}
-
+	
+	@Override
 	public boolean equals(Object obj) {
-		return obj instanceof FinLimite;
+		if (obj instanceof FinLimite fin) {
+			return fin.getfinLimite() == this.getfinLimite();
+		}
+
+		return false;
 	}
 }

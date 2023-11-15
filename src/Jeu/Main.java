@@ -1,8 +1,14 @@
 package Jeu;
 
+import cartes.Carte;
+
+import java.util.*;
+
 public interface Main {
 	
-	void prendre();
+	public Iterator<Carte> iterator = null;
+
+	void prendre(Carte c);
 	
-	void jouer();
+	void jouer(Carte c);
 }
